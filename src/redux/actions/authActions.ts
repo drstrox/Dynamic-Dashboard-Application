@@ -1,5 +1,4 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
 
 interface LoginCredentials {
   email: string;
@@ -10,7 +9,7 @@ export const loginUser = createAsyncThunk(
   'auth/loginUser',
   async ({ email, password }: LoginCredentials, { rejectWithValue }) => {
     try {
-      // Mock login - replace with actual API endpoint in production
+
       if (email === 'user@example.com' && password === 'password123') {
         return {
           id: 1,
@@ -30,7 +29,7 @@ export const loginUser = createAsyncThunk(
 export const logoutUser = createAsyncThunk(
   'auth/logoutUser',
   async () => {
-    // Perform logout logic (clear token, etc.)
+    // Perform logout logic 
     return null;
   }
 );

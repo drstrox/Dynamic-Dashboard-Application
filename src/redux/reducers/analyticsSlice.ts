@@ -1,14 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchAnalytics } from '../actions/analyticsActions';
 
-interface AnalyticsState {
-  registrationTrend: { month: string; users: number }[];
-  usersByRegion: { region: string; count: number }[];
-  activeVsInactive: { active: number; inactive: number };
-  loading: boolean;
-  error: string | null;
-}
-
 const initialState: AnalyticsState = {
   registrationTrend: [],
   usersByRegion: [],
@@ -25,12 +17,14 @@ const analyticsSlice = createSlice({
     builder
       .addCase(fetchAnalytics.pending, (state) => {
         state.loading = true;
+        state.error = null;
       })
       .addCase(fetchAnalytics.fulfilled, (state, action) => {
         state.registrationTrend = action.payload.registrationTrend;
         state.usersByRegion = action.payload.usersByRegion;
         state.activeVsInactive = action.payload.activeVsInactive;
         state.loading = false;
+        state.error = null;
       })
       .addCase(fetchAnalytics.rejected, (state, action) => {
         state.loading = false;
